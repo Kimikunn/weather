@@ -126,6 +126,7 @@
     <div
       class="flex items-center gap-2 py-12 text-white cursor-pointer duration-150 hover:text-red-500"
       @click="removeCity"
+      v-if="!route.query.preview"
     >
       <i class="fa-solid fa-trash"></i>
       <p>删除城市</p>
