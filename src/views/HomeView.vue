@@ -5,7 +5,7 @@
         type="text"
         v-model="searchQuery"
         @input="getSearchResults"
-        placeholder="Search for a city or state"
+        placeholder="搜索城市或国家"
         class="py-2 px-1 w-full bg-transparent border-b focus:border-weather-secondary focus:outline-none focus:shadow-[0px_1px_0_0_#004E71]"
       />
       <ul
@@ -13,13 +13,13 @@
         v-if="mapboxSearchResults"
       >
         <p class="py-2" v-if="searchError">
-          Sorry, something went wrong, please try again.
+          抱歉，出错了，请重试。
         </p>
         <p
           class="py-2"
           v-if="!searchError && mapboxSearchResults.length === 0"
         >
-          No results match your query, try a different term.
+          无匹配结果，请重新输入。
         </p>
         <template v-else>
           <li
@@ -80,6 +80,7 @@ const getSearchResults = () => {
         const result = await axios.get(
           `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place`
         );
+        console.log(result);
         mapboxSearchResults.value = result.data.features;
       } catch {
         searchError.value = true;

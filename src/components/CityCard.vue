@@ -13,11 +13,11 @@
         </p>
         <div class="flex gap-2">
           <span class="text-xs">
-            H:
+            最高:
             {{ Math.round(city.weather.main.temp_max) }}&deg;
           </span>
           <span class="text-xs">
-            L:
+            最低:
             {{ Math.round(city.weather.main.temp_min) }}&deg;
           </span>
         </div>

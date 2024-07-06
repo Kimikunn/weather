@@ -4,7 +4,7 @@
   </div>
 
   <p v-if="savedCities.length === 0">
-    No locations added. To start tracking a location, search in the field above.
+    无收藏列表，如果需要追踪城市天气，请先在上方进行搜索。
   </p>
 </template>
 

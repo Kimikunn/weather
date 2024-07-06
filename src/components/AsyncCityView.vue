@@ -6,8 +6,7 @@
       class="text-white p-4 bg-weather-secondary w-full text-center"
     >
       <p>
-        You are currently previewing this city, click the "+"
-        icon to start tracking this city.
+        您正在预览此城市，请点击“+”号收藏此城市。
       </p>
     </div>
     <!-- Weather Overview -->
@@ -16,7 +15,7 @@
       <p class="text-sm mb-12">
         {{
           new Date(weatherData.currentTime).toLocaleDateString(
-            "en-us",
+            "zh-cn",
             {
               weekday: "short",
               day: "2-digit",
@@ -26,7 +25,7 @@
         }}
         {{
           new Date(weatherData.currentTime).toLocaleTimeString(
-            "en-us",
+            "zh-cn",
             {
               timeStyle: "short",
             }
@@ -37,7 +36,7 @@
         {{ Math.round(weatherData.current.temp) }}&deg;
       </p>
       <p>
-        Feels like
+        体感温度
         {{ Math.round(weatherData.current.feels_like) }} &deg;
       </p>
       <p class="capitalize">
@@ -57,7 +56,7 @@
     <!-- Hourly Weather -->
     <div class="max-w-screen-md w-full py-12">
       <div class="mx-8 text-white">
-        <h2 class="mb-4">Hourly Weather</h2>
+        <h2 class="mb-4">每小时温度</h2>
         <div class="flex gap-10 overflow-x-scroll">
           <div
             v-for="hourData in weatherData.hourly"
@@ -68,7 +67,7 @@
               {{
                 new Date(
                   hourData.currentTime
-                ).toLocaleTimeString("en-us", {
+                ).toLocaleTimeString("zh-cn", {
                   hour: "numeric",
                 })
               }}
@@ -93,7 +92,7 @@
     <!-- Weekly Weather -->
     <div class="max-w-screen-md w-full py-12">
       <div class="mx-8 text-white">
-        <h2 class="mb-4">7 Day Forecast</h2>
+        <h2 class="mb-4">一周温度预测</h2>
         <div
           v-for="day in weatherData.daily"
           :key="day.dt"
@@ -102,7 +101,7 @@
           <p class="flex-1">
             {{
               new Date(day.dt * 1000).toLocaleDateString(
-                "en-us",
+                "zh-cn",
                 {
                   weekday: "long",
                 }
@@ -117,8 +116,8 @@
             alt=""
           />
           <div class="flex gap-2 flex-1 justify-end">
-            <p>H: {{ Math.round(day.temp.max) }}</p>
-            <p>L: {{ Math.round(day.temp.min) }}</p>
+            <p>最高: {{ Math.round(day.temp.max) }}&deg</p>
+            <p>最低: {{ Math.round(day.temp.min) }}&deg</p>
           </div>
         </div>
       </div>
@@ -129,7 +128,7 @@
       @click="removeCity"
     >
       <i class="fa-solid fa-trash"></i>
-      <p>Remove City</p>
+      <p>删除城市</p>
     </div>
   </div>
 </template>
@@ -142,7 +141,7 @@ const route = useRoute();
 const getWeatherData = async () => {
   try {
     const weatherData = await axios.get(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${route.query.lat}&lon=${route.query.lng}&exclude={part}&appid=7efa332cf48aeb9d2d391a51027f1a71&units=metric`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${route.query.lat}&lon=${route.query.lng}&exclude={part}&appid=7efa332cf48aeb9d2d391a51027f1a71&units=metric&lang=zh_cn`
     );
 
     // cal current date & time
